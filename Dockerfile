@@ -1,4 +1,4 @@
-FROM ubuntu:trusty
+FROM ubuntu:wily
 MAINTAINER Michael Zender <michael@crazymonkeys.de>
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -q
