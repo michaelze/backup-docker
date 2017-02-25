@@ -1,8 +1,12 @@
-FROM ubuntu:wily
+FROM ubuntu:xenial
 MAINTAINER Michael Zender <michael@crazymonkeys.de>
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -q
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y mysql-client duplicity
-RUN DEBIAN_FRONTEND=noninteractive apt-get clean
+RUN apt-get update && apt-get install -y \
+	mysql-client \
+	duplicity \
+	ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN ln -s /etc/ssl/certs/DST_Root_CA_X3.pem /root/duplicity_cacert.pem
 
 CMD ["/bin/bash"]
